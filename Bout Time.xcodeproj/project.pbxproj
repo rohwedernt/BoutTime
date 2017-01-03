@@ -13,6 +13,7 @@
 		67B569211E1B466E003262E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67B569201E1B466E003262E5 /* Assets.xcassets */; };
 		67B569241E1B466E003262E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B569221E1B466E003262E5 /* LaunchScreen.storyboard */; };
 		67B5692C1E1B46D9003262E5 /* HistoricalEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67B5692B1E1B46D9003262E5 /* HistoricalEvents.plist */; };
+		67B5692E1E1B59DC003262E5 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B5692D1E1B59DC003262E5 /* EventModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		67B569231E1B466E003262E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		67B569251E1B466E003262E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67B5692B1E1B46D9003262E5 /* HistoricalEvents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HistoricalEvents.plist; sourceTree = "<group>"; };
+		67B5692D1E1B59DC003262E5 /* EventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				67B569191E1B466E003262E5 /* AppDelegate.swift */,
 				67B5691B1E1B466E003262E5 /* ViewController.swift */,
+				67B5692D1E1B59DC003262E5 /* EventModel.swift */,
 				67B5691D1E1B466E003262E5 /* Main.storyboard */,
 				67B569201E1B466E003262E5 /* Assets.xcassets */,
 				67B569221E1B466E003262E5 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67B5691C1E1B466E003262E5 /* ViewController.swift in Sources */,
+				67B5692E1E1B59DC003262E5 /* EventModel.swift in Sources */,
 				67B5691A1E1B466E003262E5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
