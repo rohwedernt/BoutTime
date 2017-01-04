@@ -8,6 +8,12 @@
 
 import Foundation
 
+struct Event {
+    var event: String
+    var year: Int
+    var URL: String
+}
+
 enum InventoryError: Error {
     case invalidResource
     case conversionFailure
@@ -15,36 +21,30 @@ enum InventoryError: Error {
 }
 
 class PlistConverter {
-    static func converter(fromFile name: String, ofType type: String) throws -> [(String, String)] {
+    static func arrayOfDictionaries(fromFile name: String, ofType type: String) throws -> [[String: String]] {
         guard let path = Bundle.main.path(forResource: name, ofType: type) else {
             throw InventoryError.invalidResource
         }
         
-        guard let arrayOfTuples = NSArray(contentsOfFile: path) as? [(String, String)] else {
+        guard let arrayOfDictionaries = NSArray(contentsOfFile: path) as? [[String: String]] else {
             throw InventoryError.conversionFailure
         }
         
-        return arrayOfTuples
+        return arrayOfDictionaries
     }
 }
 
-
-class InventoryUnarchiver {
-    static func eventInventory(fromArray array: [(String, String)]) throws -> [(String, String)] {
+class EventUnarchiver {
+    static func eventList(arrayOfDictionaries: [[String:String]]) throws -> [Event] {
         
-        //var inventory: [VendingSelection:VendingItem] = [:]
-        
-        for (key, value) in array {
-            if let itemDictionary = value as? [String: Any], let price = itemDictionary["price"] as? Double, let quantity = itemDictionary["quantity"] as? Int {
-                let item = Item(price: price, quantity: quantity)
-                
-                guard let selection = VendingSelection(rawValue: key) else {
-                    throw InventoryError.invalidSelection
+        var currentRound: [Event] = []
+        for dict in arrayOfDictionaries {
+                    if let event = dict["Event"], let year = dict["Year"], let url = dict["URL"] {
+                        // FIXME: force conversion could fail for year value
+                        let historyEvent = Event(event: event, year: Int(year)!, URL: url)
+                        currentRound.append(historyEvent)
+                    }
                 }
-                inventory.updateValue(item, forKey: selection)
-            }
-        }
-        
-        return inventory
+        return currentRound
     }
 }

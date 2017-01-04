@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>First man-made plastic</key>
-	<string>1856</string>
-	<key>Founding of Jamestown</key>
-	<string>1607</string>
-	<key>Birth of Virginia Dare</key>
-	<string>1587</string>
-	<key>Machu Picchu constrcuted</key>
-	<string>1450</string>
-	<key>Forbidden City constructed in Beijing</key>
-	<string>1420</string>
-	<key>Birth of Genghis Khan</key>
-	<string>1162</string>
-	<key>Start of the Hundred Years War</key>
-	<string>1337</string>
-	<key>Death of Henry VIII</key>
-	<string>1547</string>
-	<key>Mona Lisa is painted</key>
-	<string>1506</string>
-	<key>Fall of Ottoman Empire</key>
-	<string>1920</string>
-	<key>Invention of Microscope</key>
-	<string>1620</string>
-	<key>Battle of Little Bighorn</key>
-	<string>1876</string>
-	<key>Spanish-American War</key>
-	<string>1898</string>
-	<key>Spanish Inquisition Established</key>
-	<string>1478</string>
-	<key>Birth of Winston Churchill</key>
-	<string>1874</string>
-	<key>Assassanation of Franz Ferdinand</key>
-	<string>1914</string>
-	<key>Invention of Electric Guitar</key>
-	<string>1931</string>
-	<key>Birth of Mozart</key>
-	<string>1756</string>
-	<key>Execution of Marie Antoinette</key>
-	<string>1793</string>
-	<key>Michelangelo paints the Sistine Chapel</key>
-	<string>1512</string>
-	<key>Start of Bubonic Plague</key>
-	<string>1347</string>
-	<key>Construction of Notre Dame</key>
-	<string>1345</string>
-	<key>Fall of the Aztec Empire</key>
-	<string>1521</string>
-	<key>Death of Leonardo da Vinci</key>
-	<string>1519</string>
-	<key>Invention of printing press</key>
-	<string>1440</string>
-	<key>Oxford University Founded</key>
-	<string>1096</string>
-	<key>Salem Witch Trials</key>
-	<string>1692</string>
-	<key>Invention of Fax Machine</key>
-	<string>1843</string>
-	<key>Death of Pablo Picasso</key>
-	<string>1973</string>
-	<key>Coca Cola founded</key>
-	<string>1886</string>
-	<key>Birth of the country Italy</key>
-	<string>1861</string>
-	<key>Invention of Bicycle</key>
-	<string>1817</string>
-	<key>Erection of the Brooklyn Bridge</key>
-	<string>1883</string>
-	<key>Hawaii becomes a US state</key>
-	<string>1959</string>
-	<key>End of guillotine executions in France</key>
-	<string>1977</string>
-	<key>Invention of Color TV</key>
-	<string>1941</string>
-	<key>Sinking of the Titanic</key>
-	<string>1912</string>
-	<key>First Flight of Wright Brothers</key>
-	<string>1903</string>
-	<key>Louisiana Purchase</key>
-	<string>1803</string>
-	<key>Assassanation of Abraham Lincoln</key>
-	<string>1865</string>
-</dict>
+<array>
+	<dict>
+		<key>Event</key>
+		<string>Fall of Ottoman Empire</string>
+		<key>Year</key>
+		<string>1920</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Mona Lisa is painted</string>
+		<key>Year</key>
+		<string>1506</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Death of Henry VIII</string>
+		<key>Year</key>
+		<string>1547</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>First Man-Made Plastic</string>
+		<key>Year</key>
+		<string>1856</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Founding of Jamestown</string>
+		<key>Year</key>
+		<string>1607</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Birth of Virginia Dare</string>
+		<key>Year</key>
+		<string>1587</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Machu Picchu constructed</string>
+		<key>Year</key>
+		<string>1450</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Forbidden City constructed in Beijing</string>
+		<key>Year</key>
+		<string>1420</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Birth of Genghis Khan</string>
+		<key>Year</key>
+		<string>1162</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Start of Hundred Years War</string>
+		<key>Year</key>
+		<string>1337</string>
+		<key>URL</key>
+		<string></string>
+	</dict>
+</array>
 </plist>
