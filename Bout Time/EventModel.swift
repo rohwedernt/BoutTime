@@ -35,16 +35,18 @@ class PlistConverter {
 }
 
 class EventUnarchiver {
-    static func eventList(arrayOfDictionaries: [[String:String]]) throws -> [Event] {
+    static func assembleEvents(arrayOfDictionaries: [[String:String]]) throws -> [Event] {
         
-        var currentRound: [Event] = []
+        var eventList: [Event] = []
         for dict in arrayOfDictionaries {
                     if let event = dict["Event"], let year = dict["Year"], let url = dict["URL"] {
                         // FIXME: force conversion could fail for year value
                         let historyEvent = Event(event: event, year: Int(year)!, URL: url)
-                        currentRound.append(historyEvent)
+                        eventList.append(historyEvent)
                     }
                 }
-        return currentRound
+        return eventList
     }
+    
+    
 }

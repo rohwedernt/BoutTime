@@ -4,11 +4,251 @@
 <array>
 	<dict>
 		<key>Event</key>
+		<string>Last time Chicago Bears won a Super Bowl</string>
+		<key>Year</key>
+		<string>1986</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Super_Bowl_XX</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Assassanation of Abraham Lincoln</string>
+		<key>Year</key>
+		<string>1865</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Assassination_of_Abraham_Lincoln</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Sinking of the Titanic</string>
+		<key>Year</key>
+		<string>1912</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Sinking_of_the_RMS_Titanic</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Louisiana Purchase</string>
+		<key>Year</key>
+		<string>1803</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Louisiana_Purchase</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>First Flight of Wright Brothers</string>
+		<key>Year</key>
+		<string>1903</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Wright_brothers#Flights</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Invention of Color TV</string>
+		<key>Year</key>
+		<string>1941</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Color_television</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Hawaii becomes a US state</string>
+		<key>Year</key>
+		<string>1953</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Hawaii#Political_changes_of_1954_.E2.80.93_the_State_of_Hawaii_.281959.E2.80.93present.29</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>End of guillotine executions in France</string>
+		<key>Year</key>
+		<string>1977</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Capital_punishment_in_France#Abolition</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Erection of the Brooklyn Bridge</string>
+		<key>Year</key>
+		<string>1883</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Brooklyn_Bridge</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Invention of Bicycle</string>
+		<key>Year</key>
+		<string>1817</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Bicycle</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Birth of the country Italy</string>
+		<key>Year</key>
+		<string>1861</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Italy#Italian_unification</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Coca Cola founded</string>
+		<key>Year</key>
+		<string>1886</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Coca-Cola</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Death of Pablo Picasso</string>
+		<key>Year</key>
+		<string>1973</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Pablo_Picasso#Death</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Invention of Fax Machine</string>
+		<key>Year</key>
+		<string>1843</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Fax</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Salem Witch Trials</string>
+		<key>Year</key>
+		<string>1692</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Salem_witch_trials</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Oxford University Founded</string>
+		<key>Year</key>
+		<string>1096</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/University_of_Oxford</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Invention of printing press</string>
+		<key>Year</key>
+		<string>1440</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Printing_press</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Death of Leonardo da Vinci</string>
+		<key>Year</key>
+		<string>1519</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Leonardo_da_Vinci#Old_age.2C_1513.E2.80.931519</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Fall of the Aztec Empire</string>
+		<key>Year</key>
+		<string>1521</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Aztec_Empire#Spanish_Conquest</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Construction of Notre Dame</string>
+		<key>Year</key>
+		<string>1345</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Notre_Dame_de_Paris#Construction_history</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Start of Bubonic Plague</string>
+		<key>Year</key>
+		<string>1347</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Black_Death</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Michelangelo paints the Sistine Chapel</string>
+		<key>Year</key>
+		<string>1512</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Sistine_Chapel_ceiling</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Execution of Marie Antoinette</string>
+		<key>Year</key>
+		<string>1793</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Marie_Antoinette#Trial_and_execution_.2814.E2.80.9316_October_1793.29</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Birth of Mozart</string>
+		<key>Year</key>
+		<string>1756</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Invention of Electric Guitar</string>
+		<key>Year</key>
+		<string>1931</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Electric_guitar#History</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Assassanation of Franz Ferdinand</string>
+		<key>Year</key>
+		<string>1914</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand_of_Austria</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Birth of Winston Churchill</string>
+		<key>Year</key>
+		<string>1874</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Winston_Churchill</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Spanish Inquisition Established</string>
+		<key>Year</key>
+		<string>1478</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Spanish_Inquisition#Start_of_the_Inquisition</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Battle of Little Bighorn</string>
+		<key>Year</key>
+		<string>1876</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Battle_of_the_Little_Bighorn</string>
+	</dict>
+	<dict>
+		<key>Event</key>
+		<string>Invention of Microscope</string>
+		<key>Year</key>
+		<string>1620</string>
+		<key>URL</key>
+		<string>https://en.wikipedia.org/wiki/Microscope#History</string>
+	</dict>
+	<dict>
+		<key>Event</key>
 		<string>Fall of Ottoman Empire</string>
 		<key>Year</key>
 		<string>1920</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Ottoman_Empire#Defeat_and_dissolution_.281908.E2.80.931922.29</string>
 	</dict>
 	<dict>
 		<key>Event</key>
@@ -16,15 +256,15 @@
 		<key>Year</key>
 		<string>1506</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Mona_Lisa</string>
 	</dict>
 	<dict>
 		<key>Event</key>
-		<string>Death of Henry VIII</string>
+		<string>Death of King Henry VIII</string>
 		<key>Year</key>
 		<string>1547</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Henry_VIII_of_England#Death_and_burial</string>
 	</dict>
 	<dict>
 		<key>Event</key>
@@ -32,7 +272,7 @@
 		<key>Year</key>
 		<string>1856</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Plastic#History</string>
 	</dict>
 	<dict>
 		<key>Event</key>
@@ -40,7 +280,7 @@
 		<key>Year</key>
 		<string>1607</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Jamestown,_Virginia#Arrival_and_beginning_.281607.E2.80.931609.29</string>
 	</dict>
 	<dict>
 		<key>Event</key>
@@ -48,7 +288,7 @@
 		<key>Year</key>
 		<string>1587</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Virginia_Dare</string>
 	</dict>
 	<dict>
 		<key>Event</key>
@@ -56,7 +296,7 @@
 		<key>Year</key>
 		<string>1450</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Machu_Picchu</string>
 	</dict>
 	<dict>
 		<key>Event</key>
@@ -64,7 +304,7 @@
 		<key>Year</key>
 		<string>1420</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Forbidden_City</string>
 	</dict>
 	<dict>
 		<key>Event</key>
@@ -72,7 +312,7 @@
 		<key>Year</key>
 		<string>1162</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Genghis_Khan</string>
 	</dict>
 	<dict>
 		<key>Event</key>
@@ -80,7 +320,7 @@
 		<key>Year</key>
 		<string>1337</string>
 		<key>URL</key>
-		<string></string>
+		<string>https://en.wikipedia.org/wiki/Genghis_Khan</string>
 	</dict>
 </array>
 </plist>
