@@ -22,11 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B29-RX-tvG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="webview_bar.png"/>
+                                <connections>
+                                    <action selector="moreInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2yR-gu-PqU"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2f-nh-DqJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2f-nh-DqJ">
                                 <rect key="frame" x="146" y="572" width="83" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="40"/>
@@ -167,6 +170,7 @@
                             <webView alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z51-7T-Vop">
                                 <rect key="frame" x="0.0" y="34" width="375" height="633"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.87399494363395225" green="0.1301356424063943" blue="0.0035873654398512478" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.16171711683273315" blue="0.29459536075592041" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -183,8 +187,8 @@
                         <outlet property="Event4" destination="miQ-wu-SYL" id="JOP-GH-RgO"/>
                         <outlet property="Event4Up" destination="DXo-qt-X11" id="jCW-Jp-rHU"/>
                         <outlet property="GameInstruction" destination="a5L-5h-QPF" id="cqF-Np-9Ir"/>
+                        <outlet property="GameTimer" destination="V2f-nh-DqJ" id="XwD-FT-6jl"/>
                         <outlet property="RoundButton" destination="KX0-LN-SMe" id="Xdk-Xw-xc6"/>
-                        <outlet property="Timer" destination="V2f-nh-DqJ" id="w9W-TY-s75"/>
                         <outlet property="Webview" destination="Z51-7T-Vop" id="gKZ-Yp-H70"/>
                         <outlet property="WebviewBar" destination="B29-RX-tvG" id="YUp-60-X92"/>
                     </connections>

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var Event3Down: UIButton!
     @IBOutlet weak var Event4Up: UIButton!
     @IBOutlet weak var RoundButton: UIButton!
-    @IBOutlet weak var Timer: UILabel!
+    @IBOutlet weak var GameTimer: UILabel!
     @IBOutlet weak var GameInstruction: UILabel!
     @IBOutlet weak var WebviewBar: UIButton!
     @IBOutlet weak var Webview: UIWebView!
@@ -33,10 +33,14 @@ class ViewController: UIViewController {
     var reordersPerRound = 6
     var reordersCompleted = 0
     var correctOrders = 0
-    var usedEvents: [Event] = []
+    var usedEvents: [String] = []
+    var timerLength: Int = 60
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+
         
         do {
             let array = try PlistConverter.arrayOfDictionaries(fromFile: "HistoricalEvents", ofType: "plist")
@@ -56,17 +60,40 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    
+    func updateCounter() {
+        if timerLength > 0 {
+            GameTimer.text = String(timerLength)
+            timerLength -= 1
+            if (timerLength < 10) {
+                GameTimer.textColor = UIColor(colorLiteralRed: (223/235), green: (31/235), blue: (1/235), alpha: 1.0)
+            }
+        } else {
+            checkAnswer()
+        }
+    }
+    
     func currentRoundEvents() -> [Event] {
         var appendEvents: [Event] = []
-        let eventIndex1 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
-        let eventIndex2 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
-        let eventIndex3 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
-        let eventIndex4 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
-        appendEvents.append(events[eventIndex1])
-        appendEvents.append(events[eventIndex2])
-        appendEvents.append(events[eventIndex3])
-        appendEvents.append(events[eventIndex4])
+//        let eventIndex1 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
+//        let eventIndex2 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
+//        let eventIndex3 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
+//        let eventIndex4 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
+//        appendEvents.append(events[eventIndex1])
+//        usedEvents.append(events[eventIndex1].event)
         
+        
+        
+        let shuffledEvents = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: events)
+        var numberOfEvents = 0
+        for e in shuffledEvents {
+            if numberOfEvents < 4 {
+                // FIXME: force unwrap
+                appendEvents.append(e as! Event)
+                numberOfEvents += 1
+            }
+        }
         return appendEvents
     }
     
@@ -93,9 +120,12 @@ class ViewController: UIViewController {
         let loadRound = currentRoundEvents()
         currentRound = loadRound
         setLabelAlpha(alpha: 1.0)
-        Timer.isHidden = false
+        GameTimer.isHidden = false
+        timerLength = 60
+        GameTimer.text = String(timerLength)
         RoundButton.isHidden = true
         GameInstruction.text = "Shake to complete"
+
     }
     
     func setDisplayEnd() {
@@ -104,9 +134,12 @@ class ViewController: UIViewController {
         Event2.isEnabled = true
         Event3.isEnabled = true
         Event4.isEnabled = true
-        
+        Event1.isHidden = false
+        Event1Down.isHidden = false
+        WebviewBar.isHidden = true
+        Webview.isHidden = true
         GameInstruction.text = "Tap events to learn more"
-        Timer.isHidden = true
+        GameTimer.isHidden = true
         RoundButton.isHidden = false
     }
     
@@ -145,6 +178,7 @@ class ViewController: UIViewController {
         let y2: Int = currentRound[1].year
         let y3: Int = currentRound[2].year
         let y4: Int = currentRound[3].year
+        timerLength = 1000
         if (y1 > y2 && y2 > y3 && y3 > y4) {
             correctAnswer()
         } else {
@@ -193,6 +227,8 @@ class ViewController: UIViewController {
             // FIXME: force unwrap
             let request = URLRequest(url: url!)
             Webview.loadRequest(request)
+        case _ where sender === WebviewBar:
+            setDisplayEnd()
             default: print("Not a valid button")
         }
     }
