@@ -26,7 +26,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var GameInstruction: UILabel!
     @IBOutlet weak var WebviewBar: UIButton!
     @IBOutlet weak var Webview: UIWebView!
-
+    @IBOutlet weak var Event1Year: UILabel!
+    @IBOutlet weak var Event2Year: UILabel!
+    @IBOutlet weak var Event3Year: UILabel!
+    @IBOutlet weak var Event4Year: UILabel!
+    
     var events: [Event] = []
     var eventIndex: Int = 0
     var currentRound: [Event] = []
@@ -125,6 +129,10 @@ class ViewController: UIViewController {
         GameTimer.text = String(timerLength)
         RoundButton.isHidden = true
         GameInstruction.text = "Shake to complete"
+        Event1Year.isHidden = true
+        Event2Year.isHidden = true
+        Event3Year.isHidden = true
+        Event4Year.isHidden = true
 
     }
     
@@ -141,6 +149,14 @@ class ViewController: UIViewController {
         GameInstruction.text = "Tap events to learn more"
         GameTimer.isHidden = true
         RoundButton.isHidden = false
+        Event1Year.isHidden = false
+        Event1Year.text = String("\(currentRound[0].year) A.D.")
+        Event2Year.isHidden = false
+        Event2Year.text = String("\(currentRound[1].year) A.D.")
+        Event3Year.isHidden = false
+        Event3Year.text = String("\(currentRound[2].year) A.D.")
+        Event4Year.isHidden = false
+        Event4Year.text = String("\(currentRound[3].year) A.D.")
     }
     
     func displayEvents() {
@@ -199,6 +215,17 @@ class ViewController: UIViewController {
         setDisplayEnd()
         RoundButton.setImage(#imageLiteral(resourceName: "next_round_fail.png"), for: UIControlState.normal)
     }
+    
+//    func showCorrectYear() {
+//        Event1Year.isHidden = false
+//        Event1Year.text = String(currentRound[0].year)
+//        Event2Year.isHidden = false
+//        Event2Year.text = String(currentRound[1].year)
+//        Event3Year.isHidden = false
+//        Event3Year.text = String(currentRound[2].year)
+//        Event4Year.isHidden = false
+//        Event4Year.text = String(currentRound[3].year)
+//    }
     
     func displayScore() {
             reordersCompleted = 0
