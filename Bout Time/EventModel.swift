@@ -8,6 +8,10 @@
 
 import Foundation
 
+var roundsPerGame = 6
+var correctOrders = 0
+var reordersCompleted = 0
+
 struct Event {
     var event: String
     var year: Int

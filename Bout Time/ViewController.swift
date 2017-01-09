@@ -30,14 +30,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var Event2Year: UILabel!
     @IBOutlet weak var Event3Year: UILabel!
     @IBOutlet weak var Event4Year: UILabel!
+    @IBOutlet weak var GameScore: UILabel!
+    @IBOutlet weak var YourScore: UILabel!
+    @IBOutlet weak var PlayAgain: UIButton!
     
     var events: [Event] = []
     var eventIndex: Int = 0
     var currentRound: [Event] = []
-    var reordersPerRound = 6
-    var reordersCompleted = 0
-    var correctOrders = 0
-    var usedEvents: [String] = []
+    var usedEvents: [Event] = []
     var timerLength: Int = 60
     
     override func viewDidLoad() {
@@ -53,7 +53,9 @@ class ViewController: UIViewController {
         } catch let error {
             fatalError("\(error)")
         }
-
+        GameScore.isHidden = true
+        YourScore.isHidden = true
+        PlayAgain.isHidden = true
         setDisplayStart()
         displayEvents()
 
@@ -63,8 +65,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
     
     func updateCounter() {
         if timerLength > 0 {
@@ -80,22 +80,16 @@ class ViewController: UIViewController {
     
     func currentRoundEvents() -> [Event] {
         var appendEvents: [Event] = []
-//        let eventIndex1 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
-//        let eventIndex2 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
-//        let eventIndex3 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
-//        let eventIndex4 = GKRandomSource.sharedRandom().nextInt(upperBound: events.count)
-//        appendEvents.append(events[eventIndex1])
-//        usedEvents.append(events[eventIndex1].event)
-        
-        
-        
         let shuffledEvents = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: events)
         var numberOfEvents = 0
         for e in shuffledEvents {
             if numberOfEvents < 4 {
+                //if !usedEvents.contains(where: e) {
                 // FIXME: force unwrap
                 appendEvents.append(e as! Event)
+                usedEvents.append(e as! Event)
                 numberOfEvents += 1
+                //}
             }
         }
         return appendEvents
@@ -159,6 +153,40 @@ class ViewController: UIViewController {
         Event4Year.text = String("\(currentRound[3].year) A.D.")
     }
     
+    func setDisplayScore() {
+        YourScore.isHidden = false
+        GameScore.isHidden = false
+        PlayAgain.isHidden = false
+        YourScore.text = "Your Score"
+        GameScore.text = "\(correctOrders)/\(roundsPerGame)"
+        Event1.isHidden = true
+        Event2.isHidden = true
+        Event3.isHidden = true
+        Event4.isHidden = true
+        Event1Down.isHidden = true
+        Event2Up.isHidden = true
+        Event2Down.isHidden = true
+        Event3Up.isHidden = true
+        Event3Down.isHidden = true
+        Event4Up.isHidden = true
+        RoundButton.isHidden = true
+        GameTimer.isHidden = true
+        GameInstruction.isHidden = true
+        WebviewBar.isHidden = true
+        Webview.isHidden = true
+        Event1Year.isHidden = true
+        Event2Year.isHidden = true
+        Event3Year.isHidden = true
+        Event4Year.isHidden = true
+    }
+    
+    @IBAction func playAgain(_ sender: UIButton) {
+        if sender === PlayAgain {
+            setDisplayStart()
+            displayEvents()
+        }
+    }
+    
     func displayEvents() {
         Event1.setTitle(currentRound[0].event, for: UIControlState.normal)
         Event2.setTitle(currentRound[1].event, for: UIControlState.normal)
@@ -189,7 +217,12 @@ class ViewController: UIViewController {
     }
 
     func checkAnswer() {
-        reordersCompleted + 1
+        if reordersCompleted == roundsPerGame
+        {
+            // Game is over
+            setDisplayScore()
+        } else {
+        reordersCompleted = reordersCompleted + 1
         let y1: Int = currentRound[0].year
         let y2: Int = currentRound[1].year
         let y3: Int = currentRound[2].year
@@ -200,6 +233,7 @@ class ViewController: UIViewController {
         } else {
             incorrectAnswer()
         }
+        }
     }
         
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
@@ -208,7 +242,7 @@ class ViewController: UIViewController {
         
     func correctAnswer() {
         setDisplayEnd()
-        correctOrders + 1
+        correctOrders = correctOrders + 1
     }
         
     func incorrectAnswer() {
@@ -216,19 +250,10 @@ class ViewController: UIViewController {
         RoundButton.setImage(#imageLiteral(resourceName: "next_round_fail.png"), for: UIControlState.normal)
     }
     
-//    func showCorrectYear() {
-//        Event1Year.isHidden = false
-//        Event1Year.text = String(currentRound[0].year)
-//        Event2Year.isHidden = false
-//        Event2Year.text = String(currentRound[1].year)
-//        Event3Year.isHidden = false
-//        Event3Year.text = String(currentRound[2].year)
-//        Event4Year.isHidden = false
-//        Event4Year.text = String(currentRound[3].year)
-//    }
-    
     func displayScore() {
-            reordersCompleted = 0
+        reordersCompleted = 0
+        correctOrders = 0
+        setDisplayScore()
     }
     
     @IBAction func moreInfo(_ sender: UIButton) {
@@ -271,15 +296,8 @@ class ViewController: UIViewController {
     
     @IBAction func nextRound(_ sender: UIButton) {
         if sender === RoundButton {
-                if reordersCompleted == reordersPerRound
-                {
-                    // Game is over
-                    displayScore()
-                } else {
-                    // Continue game
                     setDisplayStart()
                     displayEvents()
-            }
         }
     }
 
