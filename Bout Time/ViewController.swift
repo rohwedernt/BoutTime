@@ -8,6 +8,7 @@
 
 import UIKit
 import GameKit
+import AudioToolbox
 
 class ViewController: UIViewController {
     
@@ -30,9 +31,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var Event2Year: UILabel!
     @IBOutlet weak var Event3Year: UILabel!
     @IBOutlet weak var Event4Year: UILabel!
-    @IBOutlet weak var GameScore: UILabel!
-    @IBOutlet weak var YourScore: UILabel!
-    @IBOutlet weak var PlayAgain: UIButton!
     
     var events: [Event] = []
     var eventIndex: Int = 0
@@ -44,7 +42,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-
+        
+        setButtonStateHighlighted()
         
         do {
             let array = try PlistConverter.arrayOfDictionaries(fromFile: "HistoricalEvents", ofType: "plist")
@@ -53,14 +52,10 @@ class ViewController: UIViewController {
         } catch let error {
             fatalError("\(error)")
         }
-        GameScore.isHidden = true
-        YourScore.isHidden = true
-        PlayAgain.isHidden = true
-        setDisplayStart()
-        displayEvents()
-
+        
+        displayNewRound()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,6 +63,7 @@ class ViewController: UIViewController {
     
     func updateCounter() {
         if timerLength > 0 {
+            GameTimer.textColor = UIColor(colorLiteralRed: (1.0), green: (1.0), blue: (1.0), alpha: 1.0)
             GameTimer.text = String(timerLength)
             timerLength -= 1
             if (timerLength < 10) {
@@ -95,106 +91,70 @@ class ViewController: UIViewController {
         return appendEvents
     }
     
-    func setLabelAlpha(alpha: CGFloat) {
+    func setLabelOpacity(alpha: CGFloat) {
         Event1.alpha = alpha
         Event2.alpha = alpha
         Event3.alpha = alpha
         Event4.alpha = alpha
     }
     
-    func setDisplayStart() {
+    func setButtonStateHighlighted() {
         Event1Down.setImage(#imageLiteral(resourceName: "up_full_selected.png"), for: UIControlState.highlighted)
         Event2Up.setImage(#imageLiteral(resourceName: "up_half_selected.png"), for: UIControlState.highlighted)
         Event2Down.setImage(#imageLiteral(resourceName: "down_half_selected.png"), for: UIControlState.highlighted)
         Event3Up.setImage(#imageLiteral(resourceName: "up_half_selected.png"), for: UIControlState.highlighted)
         Event3Down.setImage(#imageLiteral(resourceName: "down_half_selected.png"), for: UIControlState.highlighted)
         Event4Up.setImage(#imageLiteral(resourceName: "up_full_selected.png"), for: UIControlState.highlighted)
-        Event1.isEnabled = false
-        Event2.isEnabled = false
-        Event3.isEnabled = false
-        Event4.isEnabled = false
-        Webview.isHidden = true
-        WebviewBar.isHidden = true
+    }
+
+    func displayNewRound() {
         let loadRound = currentRoundEvents()
         currentRound = loadRound
-        setLabelAlpha(alpha: 1.0)
-        GameTimer.isHidden = false
         timerLength = 60
+        setLabelOpacity(alpha: 1.0)
         GameTimer.text = String(timerLength)
-        RoundButton.isHidden = true
         GameInstruction.text = "Shake to complete"
-        Event1Year.isHidden = true
-        Event2Year.isHidden = true
-        Event3Year.isHidden = true
-        Event4Year.isHidden = true
-
-    }
-    
-    func setDisplayEnd() {
-        setLabelAlpha(alpha: 0.8)
-        Event1.isEnabled = true
-        Event2.isEnabled = true
-        Event3.isEnabled = true
-        Event4.isEnabled = true
-        Event1.isHidden = false
-        Event1Down.isHidden = false
-        WebviewBar.isHidden = true
-        Webview.isHidden = true
-        GameInstruction.text = "Tap events to learn more"
-        GameTimer.isHidden = true
-        RoundButton.isHidden = false
-        Event1Year.isHidden = false
-        Event1Year.text = String("\(currentRound[0].year) A.D.")
-        Event2Year.isHidden = false
-        Event2Year.text = String("\(currentRound[1].year) A.D.")
-        Event3Year.isHidden = false
-        Event3Year.text = String("\(currentRound[2].year) A.D.")
-        Event4Year.isHidden = false
-        Event4Year.text = String("\(currentRound[3].year) A.D.")
-    }
-    
-    func setDisplayScore() {
-        YourScore.isHidden = false
-        GameScore.isHidden = false
-        PlayAgain.isHidden = false
-        YourScore.text = "Your Score"
-        GameScore.text = "\(correctOrders)/\(roundsPerGame)"
-        Event1.isHidden = true
-        Event2.isHidden = true
-        Event3.isHidden = true
-        Event4.isHidden = true
-        Event1Down.isHidden = true
-        Event2Up.isHidden = true
-        Event2Down.isHidden = true
-        Event3Up.isHidden = true
-        Event3Down.isHidden = true
-        Event4Up.isHidden = true
         RoundButton.isHidden = true
-        GameTimer.isHidden = true
-        GameInstruction.isHidden = true
-        WebviewBar.isHidden = true
-        Webview.isHidden = true
-        Event1Year.isHidden = true
-        Event2Year.isHidden = true
-        Event3Year.isHidden = true
-        Event4Year.isHidden = true
+        placeEvents()
     }
     
-    @IBAction func playAgain(_ sender: UIButton) {
-        if sender === PlayAgain {
-            setDisplayStart()
-            displayEvents()
-        }
-    }
-    
-    func displayEvents() {
+    func placeEvents() {
         Event1.setTitle(currentRound[0].event, for: UIControlState.normal)
         Event2.setTitle(currentRound[1].event, for: UIControlState.normal)
         Event3.setTitle(currentRound[2].event, for: UIControlState.normal)
         Event4.setTitle(currentRound[3].event, for: UIControlState.normal)
     }
     
-    func rearrange(fromIndex: Int, toIndex: Int) -> [Event] {
+    func roundEndedButtonAvailability() {
+        Event1.isEnabled = true
+        Event2.isEnabled = true
+        Event3.isEnabled = true
+        Event4.isEnabled = true
+        Event1Down.isEnabled = false
+        Event2Up.isEnabled = false
+        Event2Down.isEnabled = false
+        Event3Up.isEnabled = false
+        Event3Down.isEnabled = false
+        Event4Up.isEnabled = false
+    }
+    
+    func showYear(forEventNumber: Int, forEventLabel: UILabel) {
+        forEventLabel.text = String("\(currentRound[forEventNumber].year) A.D.")
+        forEventLabel.isHidden = false
+    }
+    
+    func endRound() {
+        setLabelOpacity(alpha: 0.9)
+        roundEndedButtonAvailability()
+        GameInstruction.text = "Tap events to learn more"
+        RoundButton.isHidden = false
+        showYear(forEventNumber: 0, forEventLabel: Event1Year)
+        showYear(forEventNumber: 1, forEventLabel: Event2Year)
+        showYear(forEventNumber: 2, forEventLabel: Event3Year)
+        showYear(forEventNumber: 3, forEventLabel: Event4Year)
+    }
+    
+    func rearrangeEvents(fromIndex: Int, toIndex: Int) -> [Event] {
         let element = currentRound.remove(at: fromIndex)
         currentRound.insert(element, at: toIndex)
         
@@ -204,14 +164,14 @@ class ViewController: UIViewController {
     @IBAction func shiftEvents(_ sender: UIButton) {
         switch sender {
         case _ where sender === Event1Down || sender === Event2Up:
-            currentRound = rearrange(fromIndex: 0, toIndex: 1)
-            displayEvents()
+            currentRound = rearrangeEvents(fromIndex: 0, toIndex: 1)
+            placeEvents()
         case _ where sender === Event2Down || sender === Event3Up:
-            currentRound = rearrange(fromIndex: 1, toIndex: 2)
-            displayEvents()
+            currentRound = rearrangeEvents(fromIndex: 1, toIndex: 2)
+            placeEvents()
         case _ where sender === Event3Down || sender === Event4Up:
-            currentRound = rearrange(fromIndex: 2, toIndex: 3)
-            displayEvents()
+            currentRound = rearrangeEvents(fromIndex: 2, toIndex: 3)
+            placeEvents()
         default: print("Not a valid button")
         }
     }
@@ -220,18 +180,20 @@ class ViewController: UIViewController {
         if reordersCompleted == roundsPerGame
         {
             // Game is over
-            setDisplayScore()
+            //displayScore()
         } else {
         reordersCompleted = reordersCompleted + 1
-        let y1: Int = currentRound[0].year
-        let y2: Int = currentRound[1].year
-        let y3: Int = currentRound[2].year
-        let y4: Int = currentRound[3].year
-        timerLength = 1000
-        if (y1 > y2 && y2 > y3 && y3 > y4) {
-            correctAnswer()
+        if (currentRound[0].year > currentRound[1].year &&
+            currentRound[1].year > currentRound[2].year &&
+            currentRound[2].year > currentRound[3].year) {
+            // Answer Correct
+            endRound()
+            RoundButton.setImage(#imageLiteral(resourceName: "next_round_success.png"), for: UIControlState.normal)
+            correctOrders = correctOrders + 1
         } else {
-            incorrectAnswer()
+            // Answer Incorrect
+            endRound()
+            RoundButton.setImage(#imageLiteral(resourceName: "next_round_fail.png"), for: UIControlState.normal)
         }
         }
     }
@@ -239,25 +201,10 @@ class ViewController: UIViewController {
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         checkAnswer()
     }
-        
-    func correctAnswer() {
-        setDisplayEnd()
-        correctOrders = correctOrders + 1
-    }
-        
-    func incorrectAnswer() {
-        setDisplayEnd()
-        RoundButton.setImage(#imageLiteral(resourceName: "next_round_fail.png"), for: UIControlState.normal)
-    }
     
-    func displayScore() {
-        reordersCompleted = 0
-        correctOrders = 0
-        setDisplayScore()
-    }
-    
-    @IBAction func moreInfo(_ sender: UIButton) {
-        displayWebView()
+    @IBAction func launchWebview(_ sender: UIButton) {
+        WebviewBar.isHidden = false
+        Webview.isHidden = false
         switch sender {
         case _ where sender === Event1:
             let url = URL(string: currentRound[0].URL)
@@ -280,25 +227,16 @@ class ViewController: UIViewController {
             let request = URLRequest(url: url!)
             Webview.loadRequest(request)
         case _ where sender === WebviewBar:
-            setDisplayEnd()
+            endRound()
             default: print("Not a valid button")
         }
     }
     
-    func displayWebView() {
-        WebviewBar.isHidden = false
-        Webview.isHidden = false
-        Webview.alpha = 1.0
-        Event1.isHidden = true
-        Event1Down.isHidden = true
-        
-    }
-    
     @IBAction func nextRound(_ sender: UIButton) {
         if sender === RoundButton {
-                    setDisplayStart()
-                    displayEvents()
+                    displayNewRound()
+            
         }
     }
-
+    
 }
