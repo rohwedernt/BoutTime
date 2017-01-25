@@ -9,18 +9,22 @@
 import Foundation
 import UIKit
 
+class ResultsViewController: UIViewController {
+    @IBOutlet weak var YourScore: UILabel!
+    @IBOutlet weak var GameScore: UILabel!
+    @IBOutlet weak var PlayAgain: UIButton!
 
-
-
-//    func displayScore() {
-//        YourScore.text = "Your Score"
-//        GameScore.text = "\(correctOrders)/\(roundsPerGame)"
-//    }
-//
-//    @IBAction func playAgain(_ sender: UIButton) {
-//        if sender === PlayAgain {
-//            correctOrders = 0
-//            reordersCompleted = 0
-//            displayNewRound()
-//        }
-//    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        YourScore.text = "Your Score"
+        GameScore.text = "\(correctOrders)/\(roundsPerGame + 1)"
+        correctOrders = 0
+        reordersCompleted = 0
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+}

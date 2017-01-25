@@ -36,7 +36,7 @@
                                     <action selector="nextRound:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vK2-bF-Qs9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="dGP-cI-GrG">
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="dGP-cI-GrG">
                                 <rect key="frame" x="16" y="30" width="303" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,7 +50,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="moreInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dnU-Rg-aVL"/>
+                                    <action selector="launchWebview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XGf-MD-sig"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="rvx-5T-thj">
@@ -67,7 +67,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="moreInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mbM-Fh-i8o"/>
+                                    <action selector="launchWebview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g5i-dM-KtD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jLE-HZ-JTe">
@@ -84,7 +84,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="moreInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dAb-wa-VKR"/>
+                                    <action selector="launchWebview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5VM-Z4-lwU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="miQ-wu-SYL">
@@ -101,7 +101,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="moreInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dw5-UI-1yf"/>
+                                    <action selector="launchWebview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LL4-1B-Cg1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rmq-lO-ixT">
@@ -173,13 +173,6 @@
                                 <color key="textColor" red="0.0" green="0.1617171168" blue="0.29459536079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1g0-Na-x9Q">
-                                <rect key="frame" x="251" y="405" width="63" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.1617171168" blue="0.29459536079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqT-k4-niR">
                                 <rect key="frame" x="251" y="543" width="63" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -187,19 +180,21 @@
                                 <color key="textColor" red="0.0" green="0.1617171168" blue="0.29459536079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView hidden="YES" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z51-7T-Vop">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.87399494363395225" green="0.1301356424063943" blue="0.0035873654398512478" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B29-RX-tvG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="webview_bar.png"/>
                                 <connections>
-                                    <action selector="moreInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2yR-gu-PqU"/>
+                                    <action selector="launchWebview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FYl-AL-22H"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1g0-Na-x9Q">
+                                <rect key="frame" x="251" y="405" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.1617171168" blue="0.29459536079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.16171711683273315" blue="0.29459536075592041" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -224,16 +219,17 @@
                         <outlet property="RoundButton" destination="KX0-LN-SMe" id="Xdk-Xw-xc6"/>
                         <outlet property="Webview" destination="Z51-7T-Vop" id="gKZ-Yp-H70"/>
                         <outlet property="WebviewBar" destination="B29-RX-tvG" id="YUp-60-X92"/>
+                        <segue destination="GG2-FY-kKy" kind="show" identifier="ShowResults" id="Hez-0Z-Rcf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="93.599999999999994" y="-27.436281859070466"/>
+            <point key="canvasLocation" x="-2.3999999999999999" y="-27.436281859070466"/>
         </scene>
-        <!--View Controller-->
+        <!--Results View Controller-->
         <scene sceneID="Vld-7Y-eOk">
             <objects>
-                <viewController restorationIdentifier="ResultsView" id="GG2-FY-kKy" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ResultsView" storyboardIdentifier="ResultsView" id="GG2-FY-kKy" customClass="ResultsViewController" customModule="Bout_Time" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1eD-ah-uDE"/>
                         <viewControllerLayoutGuide type="bottom" id="Smd-LW-zgI"/>
@@ -242,32 +238,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRy-KD-8Og">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRy-KD-8Og">
                                 <rect key="frame" x="102" y="308" width="170" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="ksR-SW-dy3"/>
+                                    <constraint firstAttribute="height" constant="50" id="sBb-Oo-BvB"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="play_again.png"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="BF3-Ud-dHk"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NnK-N6-InN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NnK-N6-InN">
                                 <rect key="frame" x="137" y="214" width="101" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMT-pU-RVm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMT-pU-RVm">
                                 <rect key="frame" x="16" y="185" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.82947063359999995" green="0.83381341180000002" blue="0.83381341180000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <webView hidden="YES" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z51-7T-Vop">
+                                <rect key="frame" x="0.0" y="28" width="375" height="623"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.87399494363395225" green="0.1301356424063943" blue="0.0035873654398512478" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.1617171168" blue="0.29459536079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NnK-N6-InN" firstAttribute="centerX" secondItem="OwF-xZ-ZXX" secondAttribute="centerX" id="3so-Oj-9b5"/>
+                            <constraint firstItem="VRy-KD-8Og" firstAttribute="top" secondItem="NnK-N6-InN" secondAttribute="bottom" constant="46" id="HCF-Kc-HCV"/>
+                            <constraint firstItem="BMT-pU-RVm" firstAttribute="top" secondItem="1eD-ah-uDE" secondAttribute="bottom" constant="165" id="Hbz-L4-A4o"/>
+                            <constraint firstItem="BMT-pU-RVm" firstAttribute="centerX" secondItem="OwF-xZ-ZXX" secondAttribute="centerX" id="Hm3-Oy-d5o"/>
+                            <constraint firstItem="NnK-N6-InN" firstAttribute="top" secondItem="BMT-pU-RVm" secondAttribute="bottom" constant="8" id="WMe-zm-zWp"/>
+                            <constraint firstItem="VRy-KD-8Og" firstAttribute="centerX" secondItem="OwF-xZ-ZXX" secondAttribute="centerX" id="Ymc-sT-9C5"/>
+                            <constraint firstItem="Smd-LW-zgI" firstAttribute="top" secondItem="VRy-KD-8Og" secondAttribute="bottom" constant="309" id="jN7-w1-B84"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="GameScore" destination="NnK-N6-InN" id="F0I-3b-XcG"/>
+                        <outlet property="PlayAgain" destination="VRy-KD-8Og" id="kq3-ca-0SX"/>
+                        <outlet property="YourScore" destination="BMT-pU-RVm" id="ccn-Gh-93K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BHd-Po-0vA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="825" y="-27"/>
+            <point key="canvasLocation" x="824.79999999999995" y="-27.436281859070466"/>
         </scene>
     </scenes>
     <resources>

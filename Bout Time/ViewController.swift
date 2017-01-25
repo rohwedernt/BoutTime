@@ -8,7 +8,10 @@
 
 import UIKit
 import GameKit
-import AudioToolbox
+
+var roundsPerGame = 5
+var correctOrders = 0
+var reordersCompleted = 0
 
 class ViewController: UIViewController {
     
@@ -37,14 +40,10 @@ class ViewController: UIViewController {
     var currentRound: [Event] = []
     var usedEvents: [Event] = []
     var timerLength: Int = 60
+    var checkStateTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        
-        setButtonStateHighlighted()
-        
         do {
             let array = try PlistConverter.arrayOfDictionaries(fromFile: "HistoricalEvents", ofType: "plist")
             let loadEvents = try EventUnarchiver.assembleEvents(arrayOfDictionaries: array)
@@ -52,6 +51,15 @@ class ViewController: UIViewController {
         } catch let error {
             fatalError("\(error)")
         }
+        Event1Down.setImage(#imageLiteral(resourceName: "up_full_selected.png"), for: UIControlState.highlighted)
+        Event2Up.setImage(#imageLiteral(resourceName: "up_half_selected.png"), for: UIControlState.highlighted)
+        Event2Down.setImage(#imageLiteral(resourceName: "down_half_selected.png"), for: UIControlState.highlighted)
+        Event3Up.setImage(#imageLiteral(resourceName: "up_half_selected.png"), for: UIControlState.highlighted)
+        Event3Down.setImage(#imageLiteral(resourceName: "down_half_selected.png"), for: UIControlState.highlighted)
+        Event4Up.setImage(#imageLiteral(resourceName: "up_full_selected.png"), for: UIControlState.highlighted)
+        
+        checkStateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+
         
         displayNewRound()
     }
@@ -97,19 +105,26 @@ class ViewController: UIViewController {
         Event3.alpha = alpha
         Event4.alpha = alpha
     }
-    
-    func setButtonStateHighlighted() {
-        Event1Down.setImage(#imageLiteral(resourceName: "up_full_selected.png"), for: UIControlState.highlighted)
-        Event2Up.setImage(#imageLiteral(resourceName: "up_half_selected.png"), for: UIControlState.highlighted)
-        Event2Down.setImage(#imageLiteral(resourceName: "down_half_selected.png"), for: UIControlState.highlighted)
-        Event3Up.setImage(#imageLiteral(resourceName: "up_half_selected.png"), for: UIControlState.highlighted)
-        Event3Down.setImage(#imageLiteral(resourceName: "down_half_selected.png"), for: UIControlState.highlighted)
-        Event4Up.setImage(#imageLiteral(resourceName: "up_full_selected.png"), for: UIControlState.highlighted)
-    }
 
     func displayNewRound() {
+        
+        Event1.isEnabled = false
+        Event2.isEnabled = false
+        Event3.isEnabled = false
+        Event4.isEnabled = false
+        Event1Down.isEnabled = true
+        Event2Up.isEnabled = true
+        Event2Down.isEnabled = true
+        Event3Up.isEnabled = true
+        Event3Down.isEnabled = true
+        Event4Up.isEnabled = true
+        Event1Year.isHidden = true
+        Event2Year.isHidden = true
+        Event3Year.isHidden = true
+        Event4Year.isHidden = true
         let loadRound = currentRoundEvents()
         currentRound = loadRound
+        
         timerLength = 60
         setLabelOpacity(alpha: 1.0)
         GameTimer.text = String(timerLength)
@@ -125,7 +140,14 @@ class ViewController: UIViewController {
         Event4.setTitle(currentRound[3].event, for: UIControlState.normal)
     }
     
-    func roundEndedButtonAvailability() {
+    func showYear(forEventNumber: Int, forEventLabel: UILabel) {
+        forEventLabel.text = String("\(currentRound[forEventNumber].year) A.D.")
+        forEventLabel.isHidden = false
+    }
+    
+    func endRound() {
+        checkStateTimer.invalidate()
+        setLabelOpacity(alpha: 0.9)
         Event1.isEnabled = true
         Event2.isEnabled = true
         Event3.isEnabled = true
@@ -136,16 +158,6 @@ class ViewController: UIViewController {
         Event3Up.isEnabled = false
         Event3Down.isEnabled = false
         Event4Up.isEnabled = false
-    }
-    
-    func showYear(forEventNumber: Int, forEventLabel: UILabel) {
-        forEventLabel.text = String("\(currentRound[forEventNumber].year) A.D.")
-        forEventLabel.isHidden = false
-    }
-    
-    func endRound() {
-        setLabelOpacity(alpha: 0.9)
-        roundEndedButtonAvailability()
         GameInstruction.text = "Tap events to learn more"
         RoundButton.isHidden = false
         showYear(forEventNumber: 0, forEventLabel: Event1Year)
@@ -180,20 +192,22 @@ class ViewController: UIViewController {
         if reordersCompleted == roundsPerGame
         {
             // Game is over
-            //displayScore()
+            performSegue(withIdentifier: "ShowResults", sender: nil)
         } else {
         reordersCompleted = reordersCompleted + 1
-        if (currentRound[0].year > currentRound[1].year &&
-            currentRound[1].year > currentRound[2].year &&
-            currentRound[2].year > currentRound[3].year) {
+        let y1 = currentRound[0].year
+        let y2 = currentRound[1].year
+        let y3 = currentRound[2].year
+        let y4 = currentRound[3].year
+        if (y1 > y2 && y2 > y3 && y3 > y4) {
             // Answer Correct
-            endRound()
-            RoundButton.setImage(#imageLiteral(resourceName: "next_round_success.png"), for: UIControlState.normal)
             correctOrders = correctOrders + 1
+            RoundButton.setImage(#imageLiteral(resourceName: "next_round_success.png"), for: UIControlState.normal)
+            endRound()
         } else {
             // Answer Incorrect
-            endRound()
             RoundButton.setImage(#imageLiteral(resourceName: "next_round_fail.png"), for: UIControlState.normal)
+            endRound()
         }
         }
     }
@@ -202,29 +216,39 @@ class ViewController: UIViewController {
         checkAnswer()
     }
     
-    @IBAction func launchWebview(_ sender: UIButton) {
+    enum WebError: Error {
+        case invalidResource
+        case conversionFailure
+        case invalidSelection
+    }
+    
+    @IBAction func launchWebview(_ sender: UIButton) throws {
         WebviewBar.isHidden = false
         Webview.isHidden = false
         switch sender {
         case _ where sender === Event1:
-            let url = URL(string: currentRound[0].URL)
-            // FIXME: force unwrap
-            let request = URLRequest(url: url!)
+            guard let url = URL(string: currentRound[0].URL) else {
+                throw WebError.invalidResource
+            }
+            let request = URLRequest(url: url)
             Webview.loadRequest(request)
         case _ where sender === Event2:
-            let url = URL(string: currentRound[1].URL)
-            // FIXME: force unwrap
-            let request = URLRequest(url: url!)
+            guard let url = URL(string: currentRound[1].URL) else {
+                throw WebError.invalidResource
+            }
+            let request = URLRequest(url: url)
             Webview.loadRequest(request)
         case _ where sender === Event3:
-            let url = URL(string: currentRound[2].URL)
-            // FIXME: force unwrap
-            let request = URLRequest(url: url!)
+            guard let url = URL(string: currentRound[2].URL) else {
+                throw WebError.invalidResource
+            }
+            let request = URLRequest(url: url)
             Webview.loadRequest(request)
         case _ where sender === Event4:
-            let url = URL(string: currentRound[3].URL)
-            // FIXME: force unwrap
-            let request = URLRequest(url: url!)
+            guard let url = URL(string: currentRound[3].URL) else {
+                throw WebError.invalidResource
+            }
+            let request = URLRequest(url: url)
             Webview.loadRequest(request)
         case _ where sender === WebviewBar:
             endRound()
