@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         Event3Down.setImage(#imageLiteral(resourceName: "down_half_selected.png"), for: UIControlState.highlighted)
         Event4Up.setImage(#imageLiteral(resourceName: "up_full_selected.png"), for: UIControlState.highlighted)
         
-        checkStateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+
 
         
         displayNewRound()
@@ -107,7 +107,7 @@ class ViewController: UIViewController {
     }
 
     func displayNewRound() {
-        
+        checkStateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         Event1.isEnabled = false
         Event2.isEnabled = false
         Event3.isEnabled = false
