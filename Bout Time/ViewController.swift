@@ -57,10 +57,6 @@ class ViewController: UIViewController {
         Event3Up.setImage(#imageLiteral(resourceName: "up_half_selected.png"), for: UIControlState.highlighted)
         Event3Down.setImage(#imageLiteral(resourceName: "down_half_selected.png"), for: UIControlState.highlighted)
         Event4Up.setImage(#imageLiteral(resourceName: "up_full_selected.png"), for: UIControlState.highlighted)
-        
-
-
-        
         displayNewRound()
     }
     
@@ -82,23 +78,23 @@ class ViewController: UIViewController {
         }
     }
     
+    // Pull random event and append to usable array
     func currentRoundEvents() -> [Event] {
         var appendEvents: [Event] = []
         let shuffledEvents = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: events)
         var numberOfEvents = 0
         for e in shuffledEvents {
             if numberOfEvents < 4 {
-                //if !usedEvents.contains(where: e) {
                 // FIXME: force unwrap
                 appendEvents.append(e as! Event)
                 usedEvents.append(e as! Event)
                 numberOfEvents += 1
-                //}
             }
         }
         return appendEvents
     }
     
+    // Opacity change to signify round's end
     func setLabelOpacity(alpha: CGFloat) {
         Event1.alpha = alpha
         Event2.alpha = alpha
@@ -106,6 +102,7 @@ class ViewController: UIViewController {
         Event4.alpha = alpha
     }
 
+    // Display config for beginning of round
     func displayNewRound() {
         checkStateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         Event1.isEnabled = false
@@ -124,7 +121,6 @@ class ViewController: UIViewController {
         Event4Year.isHidden = true
         let loadRound = currentRoundEvents()
         currentRound = loadRound
-        
         timerLength = 60
         setLabelOpacity(alpha: 1.0)
         GameTimer.text = String(timerLength)
@@ -133,6 +129,7 @@ class ViewController: UIViewController {
         placeEvents()
     }
     
+    // Place events in UI based on their order in the array
     func placeEvents() {
         Event1.setTitle(currentRound[0].event, for: UIControlState.normal)
         Event2.setTitle(currentRound[1].event, for: UIControlState.normal)
@@ -140,11 +137,13 @@ class ViewController: UIViewController {
         Event4.setTitle(currentRound[3].event, for: UIControlState.normal)
     }
     
+    // Display config for showing correct year at end of each round
     func showYear(forEventNumber: Int, forEventLabel: UILabel) {
         forEventLabel.text = String("\(currentRound[forEventNumber].year) A.D.")
         forEventLabel.isHidden = false
     }
     
+    // Display config for end of round
     func endRound() {
         checkStateTimer.invalidate()
         setLabelOpacity(alpha: 0.9)
@@ -166,6 +165,7 @@ class ViewController: UIViewController {
         showYear(forEventNumber: 3, forEventLabel: Event4Year)
     }
     
+    // function to rearrange events in the array that shiftEvents() uses
     func rearrangeEvents(fromIndex: Int, toIndex: Int) -> [Event] {
         let element = currentRound.remove(at: fromIndex)
         currentRound.insert(element, at: toIndex)
@@ -173,6 +173,7 @@ class ViewController: UIViewController {
         return currentRound
     }
 
+    // Display events in preferred order based on button selected
     @IBAction func shiftEvents(_ sender: UIButton) {
         switch sender {
         case _ where sender === Event1Down || sender === Event2Up:
@@ -211,7 +212,8 @@ class ViewController: UIViewController {
         }
         }
     }
-        
+    
+    // Check answer when shake motion completes
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         checkAnswer()
     }
@@ -222,6 +224,7 @@ class ViewController: UIViewController {
         case invalidSelection
     }
     
+    // Launch correct webview url based on button selected
     @IBAction func launchWebview(_ sender: UIButton) throws {
         WebviewBar.isHidden = false
         Webview.isHidden = false
@@ -256,6 +259,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // Display new round if next round button is selected
     @IBAction func nextRound(_ sender: UIButton) {
         if sender === RoundButton {
                     displayNewRound()
