@@ -30,7 +30,6 @@
 		67B569391E1C7688003262E5 /* down_half.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B569351E1C7688003262E5 /* down_half.png */; };
 		67B5693A1E1C7688003262E5 /* down_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B569361E1C7688003262E5 /* down_full.png */; };
 		67B5693C1E1C7C69003262E5 /* HistoricalEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67B5693B1E1C7C69003262E5 /* HistoricalEvents.plist */; };
-		67D042261E240DCD002C270E /* ump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 67D042251E240DCD002C270E /* ump.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +58,6 @@
 		67B569351E1C7688003262E5 /* down_half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = down_half.png; path = BoutTimeAssets/down_half.png; sourceTree = "<group>"; };
 		67B569361E1C7688003262E5 /* down_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = down_full.png; path = BoutTimeAssets/down_full.png; sourceTree = "<group>"; };
 		67B5693B1E1C7C69003262E5 /* HistoricalEvents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HistoricalEvents.plist; sourceTree = "<group>"; };
-		67D042251E240DCD002C270E /* ump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ump.mp3; path = ../../../Downloads/ump.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +74,6 @@
 		67AF92DA1E2DAFB500D89424 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				67D042251E240DCD002C270E /* ump.mp3 */,
 				67B05BF51E233D3700E83DFE /* play_again.png */,
 				67B05BF31E23049500E83DFE /* webview_bar.png */,
 				67B05BEB1E2301DF00E83DFE /* up_full_selected.png */,
@@ -203,7 +200,6 @@
 				67B569391E1C7688003262E5 /* down_half.png in Resources */,
 				67B569381E1C7688003262E5 /* up_half.png in Resources */,
 				67B569371E1C7688003262E5 /* up_full.png in Resources */,
-				67D042261E240DCD002C270E /* ump.mp3 in Resources */,
 				67B05BF41E23049500E83DFE /* webview_bar.png in Resources */,
 				67B05BF61E233D3700E83DFE /* play_again.png in Resources */,
 			);
