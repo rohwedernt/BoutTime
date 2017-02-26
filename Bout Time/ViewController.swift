@@ -16,9 +16,9 @@ var reordersCompleted = 0
 class ViewController: UIViewController {
     
     @IBOutlet weak var Event1: UIButton!
-    @IBOutlet weak var Event2: UIButton!
     @IBOutlet weak var Event3: UIButton!
     @IBOutlet weak var Event4: UIButton!
+    @IBOutlet weak var Event2: UIButton!
     @IBOutlet weak var Event1Down: UIButton!
     @IBOutlet weak var Event2Up: UIButton!
     @IBOutlet weak var Event2Down: UIButton!
@@ -41,6 +41,10 @@ class ViewController: UIViewController {
     var usedEvents: [Event] = []
     var timerLength: Int = 60
     var checkStateTimer: Timer!
+    var firstRequest: URLRequest?
+    var secondRequest: URLRequest?
+    var thirdRequest: URLRequest?
+    var fourthRequest: URLRequest?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,9 +66,9 @@ class ViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    // Update timer in UI
     func updateCounter() {
         if timerLength > 0 {
             GameTimer.textColor = UIColor(colorLiteralRed: (1.0), green: (1.0), blue: (1.0), alpha: 1.0)
@@ -135,6 +139,11 @@ class ViewController: UIViewController {
         Event2.setTitle(currentRound[1].event, for: UIControlState.normal)
         Event3.setTitle(currentRound[2].event, for: UIControlState.normal)
         Event4.setTitle(currentRound[3].event, for: UIControlState.normal)
+        do {
+            try extractURLs()
+        } catch {
+            print("URL not found")
+        }
     }
     
     // Display config for showing correct year at end of each round
@@ -145,6 +154,8 @@ class ViewController: UIViewController {
     
     // Display config for end of round
     func endRound() {
+        WebviewBar.isHidden = true
+        Webview.alpha = 0.0
         checkStateTimer.invalidate()
         setLabelOpacity(alpha: 0.9)
         Event1.isEnabled = true
@@ -218,42 +229,48 @@ class ViewController: UIViewController {
         checkAnswer()
     }
     
-    enum WebError: Error {
+    
+    enum WebviewError: Error {
         case invalidResource
         case conversionFailure
         case invalidSelection
     }
     
+    func extractURLs() throws {
+        guard let firstURL = URL(string: String(currentRound[0].URL)) else {
+            throw WebviewError.invalidResource
+        }
+        firstRequest = URLRequest(url: firstURL)
+        guard let secondURL = URL(string: String(currentRound[0].URL)) else {
+            throw WebviewError.invalidResource
+        }
+        secondRequest = URLRequest(url: secondURL)
+        guard let thirdURL = URL(string: String(currentRound[0].URL)) else {
+            throw WebviewError.invalidResource
+        }
+        thirdRequest = URLRequest(url: thirdURL)
+        guard let fourthURL = URL(string: String(currentRound[0].URL)) else {
+            throw WebviewError.invalidResource
+        }
+        fourthRequest = URLRequest(url: fourthURL)
+    }
+    
     // Launch correct webview url based on button selected
-    @IBAction func launchWebview(_ sender: UIButton) throws {
+    @IBAction func launchWebview(_ sender: UIButton) {
         WebviewBar.isHidden = false
         Webview.isHidden = false
+        Webview.alpha = 1.0
         switch sender {
         case _ where sender === Event1:
-            guard let url = URL(string: currentRound[0].URL) else {
-                throw WebError.invalidResource
-            }
-            let request = URLRequest(url: url)
-            Webview.loadRequest(request)
+            Webview.loadRequest(firstRequest!)
         case _ where sender === Event2:
-            guard let url = URL(string: currentRound[1].URL) else {
-                throw WebError.invalidResource
-            }
-            let request = URLRequest(url: url)
-            Webview.loadRequest(request)
+            Webview.loadRequest(secondRequest!)
         case _ where sender === Event3:
-            guard let url = URL(string: currentRound[2].URL) else {
-                throw WebError.invalidResource
-            }
-            let request = URLRequest(url: url)
-            Webview.loadRequest(request)
+            Webview.loadRequest(thirdRequest!)
         case _ where sender === Event4:
-            guard let url = URL(string: currentRound[3].URL) else {
-                throw WebError.invalidResource
-            }
-            let request = URLRequest(url: url)
-            Webview.loadRequest(request)
+            Webview.loadRequest(fourthRequest!)
         case _ where sender === WebviewBar:
+
             endRound()
             default: print("Not a valid button")
         }
@@ -263,8 +280,6 @@ class ViewController: UIViewController {
     @IBAction func nextRound(_ sender: UIButton) {
         if sender === RoundButton {
                     displayNewRound()
-            
         }
     }
-    
 }
